@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { Form, Lable, Btn, Input } from './ContactForm.styled';
+import { Form, FormLabel, FormBtn, FormInput } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsOperation';
+import { addContacts } from 'redux/contactsOperation';
 import { selectItems } from 'redux/selectors';
 
 const nameInputId = nanoid();
@@ -42,20 +42,15 @@ export function ContactForm() {
     if (isAdded) {
       return alert(`${name} is already in contacts.`);
     }
-    dispatch(
-      addContact({
-        name,
-        number,
-      })
-    );
+    dispatch(addContacts({ name, number }));
 
     resetForm();
   };
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Lable htmlFor={nameInputId}>Name</Lable>
-      <Input
+      <FormLabel htmlFor={nameInputId}>Name</FormLabel>
+      <FormInput
         value={name}
         type="text"
         name="name"
@@ -65,8 +60,8 @@ export function ContactForm() {
         onChange={handleChange}
         id={nameInputId}
       />
-      <Lable htmlFor={numberInputId}>Number</Lable>
-      <Input
+      <FormLabel htmlFor={numberInputId}>Number</FormLabel>
+      <FormInput
         value={number}
         type="tel"
         name="number"
@@ -76,7 +71,7 @@ export function ContactForm() {
         onChange={handleChange}
         id={numberInputId}
       />
-      <Btn type="submit">Add contact</Btn>
+      <FormBtn type="submit">Add contact</FormBtn>
     </Form>
   );
 }

@@ -8,7 +8,6 @@ const initialState = {
   isLoggedIn: false,
   isRefreshing: false,
 };
-
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -16,13 +15,14 @@ const authSlice = createSlice({
     [register.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
+      state.isLoggedIn = true;
     },
     [logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [logOut.fulfilled](state, action) {
+    [logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
@@ -40,6 +40,7 @@ const authSlice = createSlice({
     },
   },
 });
+
 const persistConfig = {
   key: 'auth',
   storage,

@@ -1,8 +1,9 @@
+import Home from 'components/HomeComponent/Home';
 const HomeViews = () => {
   return (
-    <div>
-      <h1> Welcome to our service </h1>
-    </div>
+    <section>
+      <Home />
+    </section>
   );
 };
 
