@@ -1,7 +1,8 @@
+import { HomeText } from './Home.styled';
 const Home = () => {
   return (
     <div>
-      <h1> Welcome to our service </h1>
+      <HomeText> Welcome to our service </HomeText>
     </div>
   );
 };
